@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './views/guest/Guest.dart';
 import './views/host/Host.dart';
-import './views/host/Scanner.dart';
 import './views/guest/GuestPage.dart';
 import './views/host/HostHomepage.dart';
 import './httpServer/HttpServer.dart';
@@ -27,7 +26,6 @@ class MyApp extends StatelessWidget {
         initialRoute: '/MainMenu',
         routes: {
           '/MainMenu': (context) =>  MainMenu(),
-          '/Scanner': (context) =>  ScannerWidget(),
           '/Host' :  (context) => Host(),
           '/Guest' :  (context) => Guest(),
           '/Salon' :  (context) => Salon(),
