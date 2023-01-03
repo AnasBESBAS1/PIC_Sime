@@ -50,7 +50,7 @@ class _Host extends State<Host> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size.fromHeight(40),
-                        backgroundColor: Colors.grey,
+                        backgroundColor: Colors.black,
                       ),
                       onPressed: () {
                         AppSettings.openHotspotSettings(
@@ -59,24 +59,6 @@ class _Host extends State<Host> {
                       },
                       child: const Text(
                         'Activate Hotspot',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(40),
-                        backgroundColor: Colors.black, // Background color
-                      ),
-                      onPressed: () {
-                        print("pressed");
-                        Navigator.pushNamed(context, '/Scanner');
-                        const Icon(Icons.arrow_forward_ios);
-                      },
-                      child: const Text(
-                        'Scan network',
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),

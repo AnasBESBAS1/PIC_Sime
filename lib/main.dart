@@ -4,7 +4,6 @@ import './views/host/Host.dart';
 import './views/guest/GuestPage.dart';
 import './views/host/HostHomepage.dart';
 import './httpServer/HttpServer.dart';
-import '/views/host/ListWidget.dart';
 import './views/host/MainMenu.dart';
 import './views/host/Salon.dart';
 
@@ -32,7 +31,6 @@ class MyApp extends StatelessWidget {
           '/Http_Server' : (context) => Http_Server(),
           '/GuestPage' : (context) => GuestPage(),
           '/HostHomepage' : (context) => HostHomepage(),
-          '/ListWidget' : (context) => ListWidget(),
         });
   }
 }

@@ -79,9 +79,9 @@ class _HostHomepage extends State<HostHomepage> {
                 child: Center(
                     child: GestureDetector(
                       onTap: () async {
-                        _hostss.clear();
                         final scanner = LanScanner(debugLogging: true);
                         final ip = await myLocalIp();
+                        _hostss.clear();
                         var ipCopy = ip.toString();
                         ipCopy = ipToCSubnet(ipCopy.toString());
                         print("ip issss");
