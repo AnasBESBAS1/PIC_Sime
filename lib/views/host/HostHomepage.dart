@@ -73,12 +73,13 @@ class _HostHomepage extends State<HostHomepage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
              DrawerHeader(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: Center(
                     child: GestureDetector(
                       onTap: () async {
+                        _hostss.clear();
                         final scanner = LanScanner(debugLogging: true);
                         final ip = await myLocalIp();
                         var ipCopy = ip.toString();
@@ -87,16 +88,13 @@ class _HostHomepage extends State<HostHomepage> {
                         print(ipCopy);
                         final stream = scanner.icmpScan(
                           ipCopy.toString(), // To do : change with dynamic ip // done
-                          progressCallback: (progress) {
 
-                            if (kDebugMode) {
-                              print('progress: $progress');
-                            }
-                          },
                         );
                         stream.listen((HostModel host) {
                           setState(() {
-                            _hostss.add(host);
+                            if (!_hostss.contains(host)){
+                              _hostss.add(host);
+                            }
                           });
                         });
                         // Set the state of the widget here.
@@ -107,7 +105,6 @@ class _HostHomepage extends State<HostHomepage> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
-
                   ),
                 ))),
             ListView.builder(
@@ -115,7 +112,6 @@ class _HostHomepage extends State<HostHomepage> {
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 final host = _hostss[index];
-
                 return Card(
                   child: ListTile(
                     title: Text(host.ip),
