@@ -6,7 +6,6 @@ import 'package:wifi_scan/wifi_scan.dart';
 
 class Host extends StatefulWidget {
   const Host({super.key});
-
   @override
   State<Host> createState() => _Host();
 }
@@ -14,22 +13,15 @@ class Host extends StatefulWidget {
 class _Host extends State<Host> {
   List<WiFiAccessPoint> accessPoints = <WiFiAccessPoint>[];
 
-//**** icons
   @override
   void initState() {
-    /// Call out to intialize platform state.
     initPlatformState();
     super.initState();
   }
 
   Future<void> initPlatformState() async {
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (!mounted) return;
   }
-
-  //***
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +92,7 @@ class _Host extends State<Host> {
                         Navigator.pushNamed(context, '/HostHomepage');
                       },
                       child: const Text(
-                          'Enter Host Salon',
+                        'Enter Host Salon',
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
@@ -129,7 +121,6 @@ class _Host extends State<Host> {
         },
       ),
     ]);
-
     return actionItems;
   }
 
