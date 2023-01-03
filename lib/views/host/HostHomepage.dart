@@ -6,13 +6,12 @@ import 'package:mic_stream/mic_stream.dart';
 
 class HostHomepage extends StatefulWidget {
   const HostHomepage({super.key});
-
   @override
   State<HostHomepage> createState() => _HostHomepage();
 }
 
 class _HostHomepage extends State<HostHomepage> {
-
+  final List<String> _hosts = ["kikoo","jijo","jawjaw","mimo"];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class _HostHomepage extends State<HostHomepage> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             minimumSize: const Size.fromHeight(40),
-            backgroundColor: Colors.black, // Background color
+            backgroundColor: Colors.black,
           ),
           onPressed: sendVoice,
           child: const Text("send Voice"),
@@ -51,22 +50,19 @@ class _HostHomepage extends State<HostHomepage> {
                     ),
                   ),
                 )),
-            ListTile(
-              title: const Text('kiko...'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('kiko...'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('kiko...'),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('kiko...'),
-              onTap: () {
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                final host = _hosts[index];
+
+                return Card(
+                  child: ListTile(
+                    title: Text(host),
+                  ),
+                );
               },
+              itemCount: _hosts.length,
             ),
           ],
         ),
@@ -76,8 +72,7 @@ class _HostHomepage extends State<HostHomepage> {
 }
 
 void sendVoice() async {
-  // final _networkInfo = NetworkInfo();
-  // var wifiBroadcast = await _networkInfo.getWifiBroadcast(); // 192.168.43.255
+
   Stream<Uint8List>? stream = await MicStream.microphone(
     sampleRate: 44100,
     audioFormat: AudioFormat.ENCODING_PCM_16BIT,
