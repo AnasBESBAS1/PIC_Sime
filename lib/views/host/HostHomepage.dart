@@ -15,6 +15,7 @@ class HostHomepage extends StatefulWidget {
 class _HostHomepage extends State<HostHomepage> {
   final List<String> _hosts = ["kikoo","jijo","jawjaw","mimo"];
   final List<HostModel> _hostss = <HostModel>[];
+  bool _tapEnabled = true;
 
   Future<String?> myLocalIp() async {
     final interfaces = await NetworkInterface.list(
@@ -78,14 +79,13 @@ class _HostHomepage extends State<HostHomepage> {
                 ),
                 child: Center(
                     child: GestureDetector(
-                      onTap: () async {
+                      onTap: _tapEnabled ? () async {
+                        _tapEnabled = false;
                         final scanner = LanScanner(debugLogging: true);
                         final ip = await myLocalIp();
                         _hostss.clear();
                         var ipCopy = ip.toString();
                         ipCopy = ipToCSubnet(ipCopy.toString());
-                        print("ip issss");
-                        print(ipCopy);
                         final stream = scanner.icmpScan(
                           ipCopy.toString(), // To do : change with dynamic ip // done
 
@@ -97,10 +97,13 @@ class _HostHomepage extends State<HostHomepage> {
                             }
                           });
                         });
-                        // Set the state of the widget here.
-                      },
+                        setState(() {
+                          _tapEnabled = true;
+                        });
+                      }: null,
                          child: const Text(
-                    'Connected devices',
+                    'Connected devices\n'
+                        'Tap here to update',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -115,6 +118,14 @@ class _HostHomepage extends State<HostHomepage> {
                 return Card(
                   child: ListTile(
                     title: Text(host.ip),
+                    trailing: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
+                      onPressed: () {
+                      },
+                      child: const Text('Speak'),
+                    ),
                   ),
                 );
               },
