@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:mic_stream/mic_stream.dart';
 
@@ -20,15 +19,18 @@ class _HostHomepage extends State<HostHomepage> {
         title: const Text("PIC Network"),
         backgroundColor: Colors.black,
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            minimumSize: Size.fromHeight(40),
+            minimumSize: const Size.fromHeight(40),
             backgroundColor: Colors.black, // Background color
           ),
           onPressed: sendVoice,
-          child: Text("send Voice"),
+          child: const Text("send Voice"),
         ),
+      ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -49,30 +51,19 @@ class _HostHomepage extends State<HostHomepage> {
                 )),
             ListTile(
               title: const Text('kiko...'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text('kiko...'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text('kiko...'),
+              onTap: () {},
             ),
             ListTile(
               title: Text('kiko...'),
               onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('kiko...'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: Text('kiko...'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
               },
             ),
           ],
